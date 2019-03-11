@@ -1,0 +1,47 @@
+---
+title: "workout01-warren-gu"
+author: "Warren Gu"
+date: "March 10, 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+```{r, echo=FALSE}
+all_shots <- read.csv("~/workout01/data/shots-data.csv",
+                      header = TRUE,
+                      colClasses = c("character", "character", "character", "integer", "integer",
+                                     "integer", "integer", "character", "character",
+                                     "character", "integer", "character", "integer", "integer"),
+                      stringsAsFactors = FALSE)
+all_shots["shot_made"] = c(0)
+all_shots["shot_made"][all_shots["shot_made_flag"] == "shot_yes"] = c(1)
+two_pt <- all_shots[all_shots["shot_type"] == "2PT Field Goal", ]
+three_pt <- all_shots[all_shots["shot_type"] == "3PT Field Goal", ]
+
+all_shots <- all_shots %>% group_by(name) %>%
+  summarise(total = length(shot_made),
+            made = sum(shot_made),
+            percentage = mean(shot_made)) %>%
+  arrange(desc(percentage))
+
+two_pt <- two_pt %>% group_by(name) %>%
+  summarise(total = length(shot_made),
+            made = sum(shot_made),
+            percentage = mean(shot_made)) %>%
+  arrange(desc(percentage))
+
+three_pt <- three_pt %>% group_by(name) %>%
+  summarise(total = length(shot_made),
+            made = sum(shot_made),
+            percentage = mean(shot_made)) %>%
+  arrange(desc(percentage))
+```
+
+
+# Are the Warriors in Trouble?
+
+We all know that the Warriors have been back to back champions for the last two seasons.
