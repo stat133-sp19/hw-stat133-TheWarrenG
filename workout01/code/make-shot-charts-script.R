@@ -91,7 +91,7 @@ ggplot(data = all_shots) +
   theme_minimal()
 dev.off()
 
-png(filename = "images/gsw-shot-charts.png", width = 800, height = 700)
+png(filename = "images/gsw-shot-charts.png", width = 8, height = 7, units = "in")
 ggplot(data = all_shots) +
   annotation_custom(court_image, -250, 250, -50, 420) +
   geom_point(aes(x = x, y = y, color = shot_made_flag)) +
