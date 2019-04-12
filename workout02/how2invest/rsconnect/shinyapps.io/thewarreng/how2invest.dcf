@@ -5,6 +5,6 @@ account: thewarreng
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 860451
-bundleId: 2006285
+bundleId: 2007109
 url: https://thewarreng.shinyapps.io/how2invest/
-when: 1555083458.50069
+when: 1555105490.33382

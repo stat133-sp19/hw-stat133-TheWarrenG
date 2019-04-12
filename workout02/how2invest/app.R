@@ -120,28 +120,28 @@ server <- function(input, output) {
                  growing_annuity(input$annual, input$return / 100, input$growth / 100, 0:input$years))
   })
   
-  modalities_gathered <- reactive({
-    gather(modalities(), "modality", "investment", no_contrib:growing_contrib)
-  })
-  
   output$timelines <- renderPlot({
+    modalities_gathered <- gather(modalities(), "modality", "investment", no_contrib:growing_contrib)
+    modalities_gathered[["modality"]] <- factor(modalities_gathered[["modality"]],
+                                                levels = c("no_contrib", "fixed_contrib", "growing_contrib"))
     if (input$facet == 1) {
-      ggplot(data = modalities_gathered(), aes(x = year, y = investment,
-                                               color = modality, fill = modality)) +
+      ggplot(data = modalities_gathered, aes(x = year, y = investment,
+                                             color = modality, fill = modality)) +
         geom_line(size = 1.3) +
         geom_point(size = 3) +
         geom_area() +
         labs(title = bquote("Three modes of Investment"),
              x = bquote("year"), y = bquote("value")) +
-        facet_wrap( ~ modality)
+        facet_wrap( ~ modality) +
+        scale_fill_discrete(breaks = c("no_contrib", "fixed_contrib", "growing_contrib"))
     } else {
-      ggplot(data = modalities_gathered(), aes(x = year, y = investment, color = modality)) +
+      ggplot(data = modalities_gathered, aes(x = year, y = investment, color = modality)) +
         geom_line(size = 1.3) +
         geom_point(size = 3) +
         labs(title = bquote("Three modes of Investment"),
              x = bquote("year"), y = bquote("value"))
     }
-    })
+  })
    
   output$balances <- renderPrint({
     modalities()
