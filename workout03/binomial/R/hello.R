@@ -131,3 +131,20 @@ bin_probability <- function(success, trials, prob) {
   bin_choose(trials, success) * prob ^ success * (1 - prob) ^ (trials - success)
 }
 
+#' @title Binomial Distribution
+#' @description Calculates a binomial distribution table
+#' @param trials Number of trials in the binomial distribution (numeric)
+#' @param prob Probability of success in the binomial distribution (numeric)
+#' @return Returns a dataframe of the binomial distribution
+#' @export
+#' @examples
+#' bin_distribution(trials = 5, prob = 0.5)
+bin_distribution <- function(trials, prob) {
+  successes <- 0:trials
+  probs <- bin_probability(successes, trials, prob)
+  bin_dist <- data.frame(success = successes,
+                         probability = probs)
+  class(bin_dist) <- c("bindis", "data.frame")
+  return(bin_dist)
+}
+
