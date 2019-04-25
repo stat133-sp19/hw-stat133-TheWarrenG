@@ -47,3 +47,68 @@ check_success <- function(success, trials) {
   TRUE
 }
 
+#title Auxillary Mean
+#description Computes the expected value of the binomial distribution
+#param trials Number of trials in the binomial distribution (numeric)
+#param prob Probability of success in the binomial distribution (numeric)
+#return Expected value of binomial distribution
+aux_mean <- function(trials, prob) {
+  trials * prob
+}
+
+#title Auxillary Variance
+#description Computes the variance of the binomial distribution
+#param trials Number of trials in the binomial distribution (numeric)
+#param prob Probability of success in the binomial distribution (numeric)
+#return Variance of binomial distribution
+aux_variance <- function(trials, prob) {
+  trials * prob * (1 - prob)
+}
+
+#title Auxillary Mode
+#description Computes the mode of the binomial distribution
+#param trials Number of trials in the binomial distribution (numeric)
+#param prob Probability of success in the binomial distribution (numeric)
+#return Mode of binomial distribution
+aux_mode <- function(trials, prob) {
+  mode <- trials * prob + prob
+  if (typeof(mode) == "double") {
+    return(as.integer(mode))
+  }
+  mode
+}
+
+#title Auxillary Skewness
+#description Computes the skewness of the binomial distribution
+#param trials Number of trials in the binomial distribution (numeric)
+#param prob Probability of success in the binomial distribution (numeric)
+#return Skewness of binomial distribution
+aux_skewness <- function(trials, prob) {
+  (1 - 2 * prob) / sqrt(trials * prob * (1 - prob))
+}
+
+#title Auxillary Kurtosis
+#description Computes the kurtosis of the binomial distribution
+#param trials Number of trials in the binomial distribution (numeric)
+#param prob Probability of success in the binomial distribution (numeric)
+#return Kurtosis of binomial distribution
+aux_kurtosis <- function(trials, prob) {
+  (1 - 6 * prob * (1 - prob)) / (trials * prob * (1 - prob))
+}
+
+#' @title Binomial Coefficient
+#' @description Calculates the binomial coefficient of a binomial distribution
+#' @param n Number of trials in the binomial distribution (numeric)
+#' @param k Number of successes in the binomial distribution (numeric)
+#' @return Returns the binomial coefficient
+#' @export
+#' @examples
+#' bin_choose(n = 5, k = 2)
+#' bin_choose(5, 0)
+#' bin_choose(5, 1:3)
+bin_choose <- function(n, k) {
+  if (k > n) {
+    stop("k cannot be greater than n")
+  }
+  factorial(n) / (factorial(k) * factorial(n - k))
+}
