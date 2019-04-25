@@ -112,3 +112,22 @@ bin_choose <- function(n, k) {
   }
   factorial(n) / (factorial(k) * factorial(n - k))
 }
+
+#' @title Binomial Probability
+#' @description Calculates probability of the successes in the trials given the probability
+#' @param trials Number of trials in the binomial distribution (numeric)
+#' @param success Number of successes in the binomial distribution (numeric)
+#' @param prob Probability of success in the binomial distribution (numeric)
+#' @return Returns the probability of k successes in n trials given probability p
+#' @export
+#' @examples
+#' bin_probability(success = 2, trials = 5, prob = 0.5)
+#' bin_probability(success = 0:2, trials = 5, prob = 0.5)
+#' bin_probability(success = 55, trials = 100, prob = 0.45)
+bin_probability <- function(success, trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  check_success(success)
+  bin_choose(trials, success) * prob ^ success * (1 - prob) ^ (trials - success)
+}
+
