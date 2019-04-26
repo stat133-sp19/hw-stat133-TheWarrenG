@@ -13,6 +13,8 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+library(ggplot2)
+
 #title Check Probability
 #description Checks whether the input prob is a valid probability
 #param prob Probability that we check whether is valid (numeric)
@@ -145,6 +147,39 @@ bin_distribution <- function(trials, prob) {
   bin_dist <- data.frame(success = successes,
                          probability = probs)
   class(bin_dist) <- c("bindis", "data.frame")
-  return(bin_dist)
+  bin_dist
+}
+
+#' @export
+plot.bindis <- function(x) {
+  ggplot(data = x, aes(x = probability, y = success)) +
+    geom_bar()
+}
+
+#' @title Binomial Cumulative Table
+#' @description Calculates a binomial distribution table with cumulative distributions
+#' @param trials Number of trials in the binomial distribution (numeric)
+#' @param prob Probability of success in the binomial distribution (numeric)
+#' @return Returns a dataframe of the binomial distribution with cumulative distribution
+#' @export
+#' @examples
+#' bin_cumulative(trials = 5, prob = 0.5)
+bin_cumulative <- function(trials, prob) {
+  successes <- 0:trials
+  probs <- bin_probability(successes, trials, prob)
+  cum_prob <- cumsum(probs)
+  bin_dist <- data.frame(success = successes,
+                         probability = probs,
+                         cumulative = cum_prob)
+  class(bin_dist) <- c("bincum", "data.frame")
+  bin_dist
+}
+
+#' @export
+plot.bincum <- function(x) {
+  ggplot(data = x, aes(x = success, y = cumulative)) +
+    geom_line() +
+    xlab("Successes") +
+    ylab("Cumulative Probability")
 }
 
