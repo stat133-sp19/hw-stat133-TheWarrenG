@@ -223,3 +223,10 @@ summary.binvar <- function(x) {
   summary_binvar
 }
 
+#' @export
+print.summary.binvar <- function(x) {
+  cat('"Summary Binomial"\n\n')
+  cat("Parameters\n")
+  cat("- number of trials:", x$trials, "\n")
+  cat("- prob of success :", x$prob, "\n")
+}
