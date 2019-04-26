@@ -183,3 +183,43 @@ plot.bincum <- function(x) {
     ylab("Cumulative Probability")
 }
 
+#' @title Binomial Random Variable
+#' @description Create a Binomial Random Variable
+#' @param trials Number of trials in the binomial distribution (numeric)
+#' @param prob Probability of success in the binomial distribution (numeric)
+#' @return A Binomial Random Variable object with attributes trials and probability
+#' @export
+#' @examples
+#' bin_variable(trials = 5, prob = 0.5)
+bin_variable <- function(trials, prob) {
+  check_trials(trials)
+  check_prob(prob)
+  bin_var <- list(trials = trials, prob = prob)
+  class(bin_var) <- c("binvar", "list")
+  bin_var
+}
+
+#' @export
+print.binvar <- function(x) {
+  cat('"Binomial variable"\n\n')
+  cat("Parameters\n")
+  cat("- number of trials:", x$trials)
+  cat("- prob of success :", x$prob)
+}
+
+
+#' @export
+summary.binvar <- function(x) {
+  trials <- x$trials
+  prob <- x$prob
+  summary_binvar <- lst(trials = x$trials,
+                        prob = x$prob,
+                        mean = aux_mean(trials, prob),
+                        variance = aux_variance(trials, prob),
+                        mode = aux_mode(trials, prob),
+                        skewness = aux_skewness(ttrials, prob),
+                        kurtosis = aux_kurtosis(trials, prob))
+  class(summary_binvar) <- c("summary.binvar", "list")
+  summary_binvar
+}
+
