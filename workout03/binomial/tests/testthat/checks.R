@@ -1,4 +1,4 @@
-source("../R/functions.R")
+source("../../R/functions.R")
 
 context("Test for checker functions")
 

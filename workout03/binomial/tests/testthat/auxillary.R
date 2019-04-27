@@ -1,3 +1,5 @@
+source("../../R/functions.R")
+
 context("Test for auxillary functions")
 
 test_that("aux_mean works as expected", {
