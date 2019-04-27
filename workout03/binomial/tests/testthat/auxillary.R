@@ -82,3 +82,57 @@ test_that("aux_mode works as expected", {
   expect_equal(aux_mode(v, w), 34)
   expect_length(aux_mode(v, w), 1)
 })
+
+test_that("aux_skewness works as expected", {
+  x <- 100
+  y <- 0.2
+  z <- 0.5
+  w <- 0.8
+  
+  expect_equal(aux_skewness(x, y), 0.15)
+  expect_length(aux_skewness(x, y), 1)
+  
+  expect_equal(aux_skewness(x, z), 0)
+  expect_length(aux_skewness(x, z), 1)
+  
+  expect_equal(aux_skewness(x, w), -0.15)
+  expect_length(aux_skewness(x, w), 1)
+  
+  v <- 42
+  
+  expect_equal(aux_skewness(v, y), 0.23145502494)
+  expect_length(aux_skewness(v, y), 1)
+  
+  expect_equal(aux_skewness(v, z), 0)
+  expect_length(aux_skewness(v, z), 1)
+  
+  expect_equal(aux_skewness(v, w), -0.23145502494)
+  expect_length(aux_skewness(v, w), 1)
+})
+
+test_that("aux_kurtosis works as expected", {
+  x <- 100
+  y <- 0.2
+  z <- 0.5
+  w <- 0.8
+  
+  expect_equal(aux_kurtosis(x, y), 0.0025)
+  expect_length(aux_kurtosis(x, y), 1)
+  
+  expect_equal(aux_kurtosis(x, z), -0.02)
+  expect_length(aux_kurtosis(x, z), 1)
+  
+  expect_equal(aux_kurtosis(x, w), 0.0025)
+  expect_length(aux_kurtosis(x, w), 1)
+  
+  v <- 42
+  
+  expect_equal(aux_kurtosis(v, y), 0.005952381)
+  expect_length(aux_kurtosis(v, y), 1)
+  
+  expect_equal(aux_kurtosis(v, z), -0.04761905)
+  expect_length(aux_kurtosis(v, z), 1)
+  
+  expect_equal(aux_kurtosis(v, w), 0.005952381)
+  expect_length(aux_kurtosis(v, w), 1)
+})

@@ -107,6 +107,9 @@ aux_mode <- function(trials, prob) {
 #param trials Number of trials in the binomial distribution (numeric)
 #param prob Probability of success in the binomial distribution (numeric)
 #return Skewness of binomial distribution
+#examples
+#aux_skewness(100, 0.5)
+#aux_skewness(42, 0.1)
 aux_skewness <- function(trials, prob) {
   (1 - 2 * prob) / sqrt(trials * prob * (1 - prob))
 }
@@ -116,6 +119,9 @@ aux_skewness <- function(trials, prob) {
 #param trials Number of trials in the binomial distribution (numeric)
 #param prob Probability of success in the binomial distribution (numeric)
 #return Kurtosis of binomial distribution
+#examples
+#aux_kurtosis(100, 0.5)
+#aux_kurtosis(42, 0.1)
 aux_kurtosis <- function(trials, prob) {
   (1 - 6 * prob * (1 - prob)) / (trials * prob * (1 - prob))
 }
