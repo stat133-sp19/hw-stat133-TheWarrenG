@@ -79,6 +79,9 @@ aux_mean <- function(trials, prob) {
 #param trials Number of trials in the binomial distribution (numeric)
 #param prob Probability of success in the binomial distribution (numeric)
 #return Variance of binomial distribution
+#examples
+#aux_variance(100, 0.5)
+#aux_variance(42, 0.1)
 aux_variance <- function(trials, prob) {
   trials * prob * (1 - prob)
 }
@@ -88,6 +91,9 @@ aux_variance <- function(trials, prob) {
 #param trials Number of trials in the binomial distribution (numeric)
 #param prob Probability of success in the binomial distribution (numeric)
 #return Mode of binomial distribution
+#examples
+#aux_mode(100, 0.5)
+#aux_mode(42, 0.1)
 aux_mode <- function(trials, prob) {
   mode <- trials * prob + prob
   if (typeof(mode) == "double") {
