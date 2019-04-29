@@ -1,0 +1,63 @@
+---
+output:
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+library(ggplot2)
+```
+
+
+## Overview
+
+`"binomial"` allows the user to experiment with different calculations and visualizations of a binomial random variable.
+
+* `bin_var()` creates a binomial random variable object (of class `"bin_var"`)
+* `bin_distribution()` produces a `"bindis"` object that displays the density of the binomial random variable in table format.
+* `bin_cumulative()` produces a `"bincum"` object that displays the cumulative binomial distribution in table format.
+* `plot()` method for a `"bindis"` and `"bincum"` object.
+* `summary()` method for a `"bin_var"` object.
+* `bin_mean()`, `bin_variance()`, `bin_mode()`, `bin_skewness()`, `bin_kurtosis()` for specific statistics.
+* `bin_probability()` for density function of binomial random variable.
+* `bin_choose()` for the binomial coefficient.
+
+
+## Motivation
+
+This package has been developed as an exercise for creating a simple R package.
+
+## Usage
+
+```{r}
+library(binomial)
+#binomial random variable
+bin_var <- bin_variable(trials = 5, prob = 0.5)
+print(bin_var)
+# show summary
+summary(bin_var)
+# summary statistics
+bin_mean(trials = 5, prob = 0.5)
+bin_variance(trials = 5, prob = 0.5)
+bin_mode(trials = 5, prob = 0.5)
+bin_skewness(trials = 5, prob = 0.5)
+bin_kurtosis(trials = 5, prob = 0.5)
+# density function
+bin_probability(success = 2, trials = 5, prob = 0.5)
+# binomial coefficient
+bin_choose(n = 5, k = 2)
+# Tables of density and cumulative binomial distribution
+bin_dis <- bin_distribution(trials = 5, prob = 0.5)
+bin_dis
+bin_cum <- bin_cumulative(trials = 5, prob = 0.5)
+bin_cum
+#Plots of density and cumulative binomial distribution
+plot(bin_dis)
+plot(bin_cum)

@@ -1,11 +1,16 @@
 Package: binomial
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Binomial Random Variable
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Warren Gu
+Description: Provides functionalitty for simulating a binomial random variable.
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat,
+    ggplot2
+VignetteBuilder: knitr
