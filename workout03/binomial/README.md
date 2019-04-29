@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-    ## Warning: package 'ggplot2' was built under R version 3.4.4
 
 Overview
 --------
@@ -86,9 +85,6 @@ bin_cum
 #> 6       5     0.03125    1.00000
 #Plots of density and cumulative binomial distribution
 plot(bin_dis)
-```
 
-``` r
 plot(bin_cum)
-```
 
